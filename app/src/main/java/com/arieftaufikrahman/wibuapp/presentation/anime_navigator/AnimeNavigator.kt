@@ -33,6 +33,7 @@ import com.arieftaufikrahman.wibuapp.presentation.home.HomeScreen
 import com.arieftaufikrahman.wibuapp.presentation.home.HomeViewModel
 import com.arieftaufikrahman.wibuapp.presentation.navgraph.Route
 import com.arieftaufikrahman.wibuapp.presentation.popular.PopularScreen
+import com.arieftaufikrahman.wibuapp.presentation.popular.PopularViewModel
 import com.arieftaufikrahman.wibuapp.presentation.search.SearchScreen
 import com.arieftaufikrahman.wibuapp.presentation.search.SearchViewModel
 
@@ -132,7 +133,7 @@ fun AnimeNavigator() {
                 )
             }
             composable(route = Route.PopularScreen.route) {
-                val viewModel: HomeViewModel = hiltViewModel()
+                val viewModel: PopularViewModel = hiltViewModel()
                 val data = viewModel.anime.collectAsLazyPagingItems()
                 PopularScreen(
                     anime = data,

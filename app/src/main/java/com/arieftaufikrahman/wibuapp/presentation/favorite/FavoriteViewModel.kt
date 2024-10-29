@@ -19,10 +19,10 @@ class FavoriteViewModel @Inject constructor(
     val state: State<FavoriteState> = _state
 
     init {
-        getSeasonNow()
+        getTopAnime()
     }
 
-    private fun  getSeasonNow(){
+    private fun  getTopAnime(){
         animeUseCase.selectAnimes().onEach {
             _state.value = _state.value.copy(data = it.asReversed())
         }.launchIn(viewModelScope)

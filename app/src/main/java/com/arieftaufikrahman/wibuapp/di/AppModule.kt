@@ -13,6 +13,7 @@ import com.arieftaufikrahman.wibuapp.core.domain.repository.AnimeRepository
 import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.AnimeUseCase
 import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.DeleteAnime
 import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.GetSeasonNow
+import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.GetTopAnime
 import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.SearchAnime
 import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.SelectAnime
 import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.SelectAnimes
@@ -76,6 +77,7 @@ object AppModule {
         return AnimeUseCase(
             getSeasonNow = GetSeasonNow(animeRepository),
             getAnimeSearch = SearchAnime(animeRepository),
+            getTopAnime = GetTopAnime(animeRepository),
             upsertAnime = UpsertAnime(animeRepository),
             deleteAnime = DeleteAnime(animeRepository),
             selectAnimes = SelectAnimes(animeRepository),

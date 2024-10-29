@@ -39,4 +39,12 @@ interface AnimeApi {
         @Query("letter") letter: String? = null,         // Filter by first letter
         @Query("producers") producers: String? = null    // Filter by producer IDs
     ): AnimeResponse
+
+    @GET("top/anime")
+    suspend fun getTopAnime(
+        @Query("page") page: Int,
+        @Query("limit") limit: Int? = 10,
+        @Query("filter") filter: String? = null,
+        @Query("type") type: String? = null
+    ) : AnimeResponse
 }

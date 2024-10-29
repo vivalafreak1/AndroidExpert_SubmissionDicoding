@@ -56,7 +56,7 @@ fun AnimeList(
 
 @Composable
 fun handlePagingResult(
-    anime: LazyPagingItems<com.arieftaufikrahman.wibuapp.core.domain.model.Data>
+    anime: LazyPagingItems<Data>
 ): Boolean {
     val loadState = anime.loadState
     val error = when {

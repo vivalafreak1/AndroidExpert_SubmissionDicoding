@@ -8,6 +8,7 @@ import com.arieftaufikrahman.wibuapp.core.data.remote.AnimeApi
 import com.arieftaufikrahman.wibuapp.core.domain.repository.AnimeRepository
 import com.arieftaufikrahman.wibuapp.core.data.remote.AnimePagingSource
 import com.arieftaufikrahman.wibuapp.core.data.remote.SearchAnimePagingSource
+import com.arieftaufikrahman.wibuapp.core.data.remote.TopAnimePagingSource
 import com.arieftaufikrahman.wibuapp.core.domain.model.Data
 import kotlinx.coroutines.flow.Flow
 
@@ -21,6 +22,18 @@ class AnimeRepositoryImpl(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 AnimePagingSource(
+                    animeApi = animeApi,
+                    data = data.joinToString(separator = ",")
+                )
+            }
+        ).flow
+    }
+
+    override fun getTopAnime(data: List<String>): Flow<PagingData<Data>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                TopAnimePagingSource(
                     animeApi = animeApi,
                     data = data.joinToString(separator = ",")
                 )

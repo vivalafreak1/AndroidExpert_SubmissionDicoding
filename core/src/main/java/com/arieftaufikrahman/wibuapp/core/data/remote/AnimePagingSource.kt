@@ -2,15 +2,16 @@ package com.arieftaufikrahman.wibuapp.core.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.arieftaufikrahman.wibuapp.core.domain.model.Data
 
 class AnimePagingSource(
     private val animeApi: AnimeApi,
     private val data: String
-): PagingSource<Int, com.arieftaufikrahman.wibuapp.core.domain.model.Data>() {
+): PagingSource<Int, Data>() {
 
     private var totalAnimeCount = 0
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, com.arieftaufikrahman.wibuapp.core.domain.model.Data> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Data> {
         val page = params.key ?: 1
         return try {
             val animeResponse = animeApi.getSeasonNow(/*data = data,*/ page = page)
