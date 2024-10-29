@@ -42,7 +42,7 @@ import com.arieftaufikrahman.wibuapp.ui.theme.WibuAppTheme
 @Composable
 fun AnimeCard(
     modifier: Modifier = Modifier,
-    data: Data,
+    data: com.arieftaufikrahman.wibuapp.core.domain.model.Data,
     onClick: () -> Unit
 ) {
     val context = LocalContext.current

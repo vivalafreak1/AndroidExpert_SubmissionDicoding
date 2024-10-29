@@ -35,8 +35,8 @@ fun AnimeList(
 @Composable
 fun AnimeList(
     modifier: Modifier = Modifier,
-    anime: LazyPagingItems<com.arieftaufikrahman.wibuapp.core.domain.model.Data>,
-    onClick: (com.arieftaufikrahman.wibuapp.core.domain.model.Data) -> Unit
+    anime: LazyPagingItems<Data>,
+    onClick: (Data) -> Unit
 ) {
     val handlePagingResult = handlePagingResult(anime = anime)
     if (handlePagingResult) {

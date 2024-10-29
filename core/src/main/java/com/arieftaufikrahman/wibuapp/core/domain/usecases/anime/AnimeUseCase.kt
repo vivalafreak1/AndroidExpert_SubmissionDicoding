@@ -1,4 +1,4 @@
-package com.arieftaufikrahman.wibuapp.domain.usecases.anime
+package com.arieftaufikrahman.wibuapp.core.domain.usecases.anime
 
 data class AnimeUseCase(
     val getSeasonNow: GetSeasonNow,

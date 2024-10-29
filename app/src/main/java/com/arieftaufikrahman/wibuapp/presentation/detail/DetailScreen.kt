@@ -37,7 +37,7 @@ import com.arieftaufikrahman.wibuapp.ui.theme.WibuAppTheme
 
 @Composable
 fun DetailScreen(
-    data: com.arieftaufikrahman.wibuapp.core.domain.model.Data,
+    data: Data,
     event: (DetailEvent) -> Unit,
     navigateUp: () -> Unit,
 ) {
@@ -66,7 +66,7 @@ fun DetailScreen(
                     }
                 }
             },
-            onBookmarkClick = { event(DetailEvent.UpsertDeleteAnime(data)) },
+            onFavoriteClick = { event(DetailEvent.UpsertDeleteAnime(data)) },
             onBackClick = navigateUp
         )
 

@@ -27,7 +27,7 @@ import com.arieftaufikrahman.wibuapp.ui.theme.WibuAppTheme
 fun DetailTopBar(
     onBrowsingClick: () -> Unit,
     onShareClick: () -> Unit,
-    onFavoriteClick: () -> Unit,
+    onBookmarkClick: () -> Unit,
     onBackClick: () -> Unit
 ) {
 
@@ -48,9 +48,9 @@ fun DetailTopBar(
             }
         },
         actions = {
-            IconButton(onClick = onFavoriteClick) {
+            IconButton(onClick = onBookmarkClick) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_favorite),
+                    painter = painterResource(id = R.drawable.ic_bookmark),
                     contentDescription = null
                 )
             }
@@ -79,7 +79,7 @@ fun DetailTopBarPreview() {
             DetailTopBar(
                 onBrowsingClick = { /*TODO*/ },
                 onShareClick = { /*TODO*/ },
-                onFavoriteClick = { /*TODO*/ }) {
+                onBookmarkClick = { /*TODO*/ }) {
             }
         }
     }

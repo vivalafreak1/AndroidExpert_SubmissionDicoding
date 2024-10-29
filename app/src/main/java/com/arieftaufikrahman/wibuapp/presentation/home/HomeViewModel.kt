@@ -3,7 +3,7 @@ package com.arieftaufikrahman.wibuapp.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.arieftaufikrahman.wibuapp.domain.usecases.anime.AnimeUseCase
+import com.arieftaufikrahman.wibuapp.core.domain.usecases.anime.AnimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.arieftaufikrahman.wibuapp.presentation.bookmark
+package com.arieftaufikrahman.wibuapp.presentation.favorite
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,12 +15,11 @@ import androidx.compose.ui.text.font.FontWeight
 import com.arieftaufikrahman.wibuapp.presentation.Dimension.MediumPadding1
 
 import com.arieftaufikrahman.wibuapp.R
-import com.arieftaufikrahman.wibuapp.core.domain.model.Data
 import com.arieftaufikrahman.wibuapp.presentation.common.AnimeList
 
 @Composable
 fun BookmarkScreen(
-    state: BookmarkState,
+    state: FavoriteState,
     navigateToDetail: (com.arieftaufikrahman.wibuapp.core.domain.model.Data) -> Unit
 ) {
     Column(

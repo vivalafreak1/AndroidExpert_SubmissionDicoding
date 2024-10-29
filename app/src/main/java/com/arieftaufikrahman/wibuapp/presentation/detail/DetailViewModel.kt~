@@ -38,12 +38,12 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    private suspend fun deleteAnime(data: Data) {
+    private suspend fun deleteAnime(data: com.arieftaufikrahman.wibuapp.core.domain.model.Data) {
         animeUseCase.deleteAnime(data = data)
         sideEffect = "Anime Deleted"
     }
 
-    private suspend fun upsertAnime(data: Data) {
+    private suspend fun upsertAnime(data: com.arieftaufikrahman.wibuapp.core.domain.model.Data) {
         animeUseCase.upsertAnime(data = data)
         sideEffect = "Anime Saved"
     }

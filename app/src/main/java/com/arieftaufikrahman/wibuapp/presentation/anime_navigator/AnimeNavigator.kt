@@ -24,14 +24,15 @@ import com.arieftaufikrahman.wibuapp.R
 import com.arieftaufikrahman.wibuapp.core.domain.model.Data
 import com.arieftaufikrahman.wibuapp.presentation.anime_navigator.components.AnimeBottomNavigation
 import com.arieftaufikrahman.wibuapp.presentation.anime_navigator.components.BottomNavigationItem
-import com.arieftaufikrahman.wibuapp.presentation.bookmark.BookmarkScreen
-import com.arieftaufikrahman.wibuapp.presentation.bookmark.BookmarkViewModel
 import com.arieftaufikrahman.wibuapp.presentation.detail.DetailEvent
 import com.arieftaufikrahman.wibuapp.presentation.detail.DetailScreen
 import com.arieftaufikrahman.wibuapp.presentation.detail.DetailViewModel
+import com.arieftaufikrahman.wibuapp.presentation.favorite.FavoriteScreen
+import com.arieftaufikrahman.wibuapp.presentation.favorite.FavoriteViewModel
 import com.arieftaufikrahman.wibuapp.presentation.home.HomeScreen
 import com.arieftaufikrahman.wibuapp.presentation.home.HomeViewModel
 import com.arieftaufikrahman.wibuapp.presentation.navgraph.Route
+import com.arieftaufikrahman.wibuapp.presentation.popular.PopularScreen
 import com.arieftaufikrahman.wibuapp.presentation.search.SearchScreen
 import com.arieftaufikrahman.wibuapp.presentation.search.SearchViewModel
 
@@ -42,8 +43,9 @@ fun AnimeNavigator() {
     val bottomNavigationItems = remember {
         listOf(
             BottomNavigationItem(icon = R.drawable.ic_home, text = "Home"),
+            BottomNavigationItem(icon = R.drawable.ic_globe, text = "Popular"),
             BottomNavigationItem(icon = R.drawable.ic_search, text = "Search"),
-            BottomNavigationItem(icon = R.drawable.ic_bookmark, text = "Bookmark")
+            BottomNavigationItem(icon = R.drawable.ic_favorite, text = "Favorite")
         )
     }
 
@@ -56,16 +58,18 @@ fun AnimeNavigator() {
     selectedItem = remember(key1 = backstackState) {
         when (backstackState?.destination?.route) {
             Route.HomeScreen.route -> 0
-            Route.SearchScreen.route -> 1
-            Route.BookmarkScreen.route -> 2
+            Route.PopularScreen.route -> 1
+            Route.SearchScreen.route -> 2
+            Route.FavoriteScreen.route -> 3
             else -> 0
         }
     }
 
     val isBottomBarVisible = remember(key1 = backstackState) {
         backstackState?.destination?.route == Route.HomeScreen.route ||
+                backstackState?.destination?.route == Route.PopularScreen.route ||
                 backstackState?.destination?.route == Route.SearchScreen.route ||
-                backstackState?.destination?.route == Route.BookmarkScreen.route
+                backstackState?.destination?.route == Route.FavoriteScreen.route
     }
 
     Scaffold(
@@ -84,12 +88,17 @@ fun AnimeNavigator() {
 
                             1 -> navigateToTab(
                                 navController = navController,
-                                route = Route.SearchScreen.route
+                                route = Route.PopularScreen.route
                             )
 
                             2 -> navigateToTab(
                                 navController = navController,
-                                route = Route.BookmarkScreen.route
+                                route = Route.SearchScreen.route
+                            )
+
+                            3 -> navigateToTab(
+                                navController = navController,
+                                route = Route.FavoriteScreen.route
                             )
                         }
                     }
@@ -114,6 +123,19 @@ fun AnimeNavigator() {
                             route = Route.SearchScreen.route
                         )
                     },
+                    navigateToDetail = { data ->
+                        navigateToDetail(
+                            navController = navController,
+                            data = data
+                        )
+                    }
+                )
+            }
+            composable(route = Route.PopularScreen.route) {
+                val viewModel: HomeViewModel = hiltViewModel()
+                val data = viewModel.anime.collectAsLazyPagingItems()
+                PopularScreen(
+                    anime = data,
                     navigateToDetail = { data ->
                         navigateToDetail(
                             navController = navController,
@@ -151,10 +173,10 @@ fun AnimeNavigator() {
                             navigateUp = { navController.navigateUp() })
                     }
             }
-            composable(route = Route.BookmarkScreen.route) {
-                val viewModel: BookmarkViewModel = hiltViewModel()
+            composable(route = Route.FavoriteScreen.route) {
+                val viewModel: FavoriteViewModel = hiltViewModel()
                 val state = viewModel.state.value
-                BookmarkScreen(state = state, navigateToDetail = { data ->
+                FavoriteScreen(state = state, navigateToDetail = { data ->
                     navigateToDetail(navController = navController, data = data)
                 })
             }
@@ -174,7 +196,7 @@ private fun navigateToTab(navController: NavController, route: String) {
     }
 }
 
-private fun navigateToDetail(navController: NavController, data: com.arieftaufikrahman.wibuapp.core.domain.model.Data) {
+private fun navigateToDetail(navController: NavController, data: Data) {
     navController.currentBackStackEntry?.savedStateHandle?.set("data", data)
     navController.navigate(
         route = Route.DetailScreen.route
