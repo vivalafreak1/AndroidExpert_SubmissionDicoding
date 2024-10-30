@@ -136,13 +136,13 @@ private fun AnimeCardPreview() {
                 type = "",
                 url = "",
                 genres = listOf(
-                    com.arieftaufikrahman.wibuapp.core.domain.model.Genre(
+                    Genre(
                         mal_id = 0,
                         name = "Adventure",
                         type = "",
                         url = ""
                     ),
-                    com.arieftaufikrahman.wibuapp.core.domain.model.Genre(
+                    Genre(
                         mal_id = 1,
                         name = "Fantasy",
                         type = "",
@@ -150,7 +150,7 @@ private fun AnimeCardPreview() {
                     )
                 ),
                 studios = listOf(
-                    com.arieftaufikrahman.wibuapp.core.domain.model.Studios(
+                    Studios(
                         mal_id = 0,
                         name = "Wit Studio",
                         type = "",
