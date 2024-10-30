@@ -67,6 +67,7 @@ fun AnimeGridItem(
             .clip(MaterialTheme.shapes.medium)
             .clickable { onClick() }
     ) {
+        // Display the image
         AsyncImage(
             model = ImageRequest.Builder(context).data(data.images.webp.image_url).build(),
             contentDescription = null,
@@ -76,6 +77,7 @@ fun AnimeGridItem(
             contentScale = ContentScale.Crop
         )
 
+        // Gradient overlay at the bottom
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -105,6 +107,7 @@ fun AnimeGridItem(
             style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold)
         )
 
+        // Title text overlaid on the gradient, with ellipsis for overflow
         Text(
             text = data.title,
             style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Bold),
